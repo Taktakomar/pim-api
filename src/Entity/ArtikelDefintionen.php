@@ -31,7 +31,7 @@ class ArtikelDefintionen
     /**
      * @var \Artikel
      *
-     * @ORM\ManyToOne(targetEntity="Artikel")
+     * @ORM\ManyToOne(targetEntity="Artikel" ,fetch="EAGER")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="artikel_id", referencedColumnName="artikel_id")
      * })

@@ -3,11 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Artikel
  *
- * @ORM\Table(name="artikel", indexes={@ORM\Index(name="kollektion_id", columns={"kollektion_id"}), @ORM\Index(name="kategorie_id", columns={"kategorie_id"}), @ORM\Index(name="image_id", columns={"image_id"}), @ORM\Index(name="farbe_id", columns={"farbe_id"})})
- * @ORM\Entity(repositoryClass="App\Repository\ArikelRepository")
+ * @ORM\Table(name="artikel", indexes={@ORM\Index(name="image_id", columns={"image_id"}), @ORM\Index(name="farbe_id", columns={"farbe_id"}), @ORM\Index(name="kollektion_id", columns={"kollektion_id"}), @ORM\Index(name="kategorie_id", columns={"kategorie_id"})})
+ * @ORM\Entity(repositoryClass="App\Repository\ArtikelRepository")
  */
 class Artikel
 {
@@ -18,7 +19,6 @@ class Artikel
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    
     private $artikelId;
 
     /**
@@ -36,24 +36,38 @@ class Artikel
     private $preis;
 
     /**
-     * @var \Kategorie
+     * @var string
      *
-     * @ORM\ManyToOne(targetEntity="Kategorie")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="kategorie_id", referencedColumnName="kategorie_id")
-     * })
+     * @ORM\Column(name="menge", type="string", length=255, nullable=false)
      */
-    private $kategorie;
+    private $menge;
 
-  /**
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Nav_id", type="string", length=80, nullable=false)
+     */
+    private $navId;
+
+    /**
      * @var \Images
      *
-     * @ORM\ManyToOne(targetEntity="Images")
+     * @ORM\ManyToOne(targetEntity="Images" ,fetch="EAGER")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="image_id", referencedColumnName="image_id")
      * })
      */
-    private $bild;
+    private $image;
+
+    /**
+     * @var \Kollektion
+     *
+     * @ORM\ManyToOne(targetEntity="Kollektion",fetch="EAGER")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="kollektion_id", referencedColumnName="kollektion_id")
+     * })
+     */
+    private $kollektion;
 
     /**
      * @var \Farbe
@@ -66,19 +80,14 @@ class Artikel
     private $farbe;
 
     /**
-     * @var \Kollektion
+     * @var \Kategorie
      *
-     * @ORM\ManyToOne(targetEntity="Kollektion")
+     * @ORM\ManyToOne(targetEntity="Kategorie")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="kollektion_id", referencedColumnName="kollektion_id")
+     *   @ORM\JoinColumn(name="kategorie_id", referencedColumnName="kategorie_id")
      * })
      */
-    private $kollektion;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $menge;
+    private $kategorie;
 
     public function getArtikelId(): ?int
     {
@@ -109,26 +118,50 @@ class Artikel
         return $this;
     }
 
-    public function getKategorie():?Kategorie
+    public function getMenge(): ?string
     {
-        return $this->kategorie;
+        return $this->menge;
     }
 
-    public function setKategorie(?Kategorie $kategorie): self
+    public function setMenge(string $menge): self
     {
-        $this->kategorie = $kategorie;
+        $this->menge = $menge;
 
         return $this;
     }
 
-    public function getBild(): ?Images
+    public function getNavId(): ?string
     {
-        return $this->bild;
+        return $this->navId;
     }
 
-    public function setBild(?Images $bild): self
+    public function setNavId(string $navId): self
     {
-        $this->bild = $bild;
+        $this->navId = $navId;
+
+        return $this;
+    }
+
+    public function getImage(): ?Images
+    {
+        return $this->image;
+    }
+
+    public function setImage(?Images $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    public function getKollektion(): ?Kollektion
+    {
+        return $this->kollektion;
+    }
+
+    public function setKollektion(?Kollektion $kollektion): self
+    {
+        $this->kollektion = $kollektion;
 
         return $this;
     }
@@ -144,28 +177,15 @@ class Artikel
 
         return $this;
     }
-    
 
-    public function getKollektion(): ?Kollektion
+    public function getKategorie(): ?Kategorie
     {
-        return $this->kollektion;
+        return $this->kategorie;
     }
 
-    public function setKollektion(?Kollektion $kollektion): self
+    public function setKategorie(?Kategorie $kategorie): self
     {
-        $this->kollektion = $kollektion;
-
-        return $this;
-    }
-
-    public function getMenge(): ?string
-    {
-        return $this->menge;
-    }
-
-    public function setMenge(string $menge): self
-    {
-        $this->menge = $menge;
+        $this->kategorie = $kategorie;
 
         return $this;
     }

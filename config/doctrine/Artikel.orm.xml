@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="App\Entity\Artikel" table="artikel">
+    <indexes>
+      <index name="image_id" columns="image_id"/>
+      <index name="farbe_id" columns="farbe_id"/>
+      <index name="kollektion_id" columns="kollektion_id"/>
+      <index name="kategorie_id" columns="kategorie_id"/>
+    </indexes>
+    <id name="artikelId" type="integer" column="artikel_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="artikelName" type="string" column="artikel_name" length="40" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="preis" type="float" column="preis" precision="10" scale="0" nullable="false"/>
+    <field name="menge" type="string" column="menge" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="navId" type="string" column="Nav_id" length="80" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <many-to-one field="image" target-entity="Images" fetch="LAZY">
+      <join-columns>
+        <join-column name="image_id" referenced-column-name="image_id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="kollektion" target-entity="Kollektion" fetch="LAZY">
+      <join-columns>
+        <join-column name="kollektion_id" referenced-column-name="kollektion_id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="farbe" target-entity="Farbe" fetch="LAZY">
+      <join-columns>
+        <join-column name="farbe_id" referenced-column-name="farbe_id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="kategorie" target-entity="Kategorie" fetch="LAZY">
+      <join-columns>
+        <join-column name="kategorie_id" referenced-column-name="kategorie_id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

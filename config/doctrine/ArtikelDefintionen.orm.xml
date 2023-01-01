@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="App\Entity\ArtikelDefintionen" table="artikel_defintionen">
+    <indexes>
+      <index name="artikel_id" columns="artikel_id"/>
+      <index name="definition_id" columns="definition_id"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="inhalt" type="string" column="inhalt" length="50" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <many-to-one field="artikel" target-entity="Artikel" fetch="LAZY">
+      <join-columns>
+        <join-column name="artikel_id" referenced-column-name="artikel_id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="definition" target-entity="Defintionen" fetch="LAZY">
+      <join-columns>
+        <join-column name="definition_id" referenced-column-name="definition_id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>
