@@ -1,0 +1,38 @@
+.logo {
+    border: 2px solid;
+    padding: 12px;
+    border-color: #f6c23e;
+    border-radius: 11px;
+    background: antiquewhite;
+}
+
+.protcolButton {
+    color: #36b9cc !important;
+    padding: 2px;
+    font-size: 1.3em;
+}
+
+.stopButton {
+    color: #e74a3b;
+    padding: 2px;
+    font-size: 1.3em;
+}
+
+.startButton {
+    color: #1cc88a;
+    padding: 2px;
+    font-size: 1.3em;
+}
+
+.flowTextElement {
+    flex-direction: column !important;
+}
+
+.titleFlowElement {
+    text-align: center;
+    padding: 0.5rem;
+}
+
+.flowElementErorr {
+    background-color: #e74a3b40;
+}

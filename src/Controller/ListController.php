@@ -193,7 +193,7 @@ class ListController extends AbstractFOSRestController
                         
         }
     }
-return $this->json($res,200);
+    return $this->json($res,200);
 }
     public function getDefintionInhaltWithArtikelID(ManagerRegistry $doctrine,$artikelId,$defId){
         $inhalt = "" ;
