@@ -1,48 +1,60 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
-api_get_all_product:
-    path: /api/getAllProduct/
-    controller: App\Controller\ListController::getAllProduct
-    methods: GET
+app_login:
+  path: /
+  controller: App\Controller\SecurityController::login
+app_logout:
+  path: /logout
+  controller: App\Controller\SecurityController::logout
+reg:
+  path: /reg
+  controller: App\Controller\RegistrierungController::index
+flow:
+  path: /home/flows
+  controller: App\Controller\FlowsController::index
+flowProtkoll:
+  path: /home/flow/protokoll
+  controller: App\Controller\FlowProtokollController::index
+flowConnection:
+  path: /home/flow/connection
+  controller: App\Controller\FlowConnectionController::index
 
+api_get_all_product:
+  path: /api/getAllProduct/
+  controller: App\Controller\ListController::getAllProduct
+  methods: GET
 api_get_all_kunden:
-    path: /api/getKundenInforamtion/
-    controller: App\Controller\ListController::getKundenInforamtion
-    methods: GET
+  path: /api/getKundenInforamtion/
+  controller: App\Controller\ListController::getKundenInforamtion
+  methods: GET
 
 api_get_all_kundenTemplate:
-    path: /api/getKundenTemplate/
-    controller: App\Controller\ListController::getKundenTemplate
-    methods: GET
+  path: /api/getKundenTemplate/
+  controller: App\Controller\ListController::getKundenTemplate
+  methods: GET
 api_get_all_kollektionen:
-    path: /api/getkollektionen/
-    controller: App\Controller\ListController::getkollektionen
-    methods: GET
+  path: /api/getkollektionen/
+  controller: App\Controller\ListController::getkollektionen
+  methods: GET
 api_get_all_kategorie:
-    path: /api/getkategorien/
-    controller: App\Controller\ListController::getkategorien
-    methods: GET
+  path: /api/getkategorien/
+  controller: App\Controller\ListController::getkategorien
+  methods: GET
 api_get_all_Images:
-    path: /api/getAllImages/
-    controller: App\Controller\ListController::getAllImages
-    methods: GET
+  path: /api/getAllImages/
+  controller: App\Controller\ListController::getAllImages
+  methods: GET
 api_get_all_definitionen:
-    path: /api/getAllDefinitionen/
-    controller: App\Controller\ListController::getAllDefinitionen
-    methods: GET
+  path: /api/getAllDefinitionen/
+  controller: App\Controller\ListController::getAllDefinitionen
+  methods: GET
 api_get_all_artikel_defintionen:
-    path: /api/getAllArikelDefintionen
-    controller: App\Controller\ListController::getAllArikelDefintionen
-    methods: GET
+  path: /api/getAllArikelDefintionen
+  controller: App\Controller\ListController::getAllArikelDefintionen
+  methods: GET
 api_get_all_createCsvBycustomersName:
-    path: /api/createCsvBycustomersName/{name}
-    controller: App\Controller\ListController::createCsvBycustomersName
-    methods: GET
+  path: /api/createCsvBycustomersName/{name}
+  controller: App\Controller\ListController::createCsvBycustomersName
+  methods: GET
 api_get_all_ProductInfoWithCustomViewByName:
-    path: /api/getProductInfoWithCustomViewByName/{name}
-    controller: App\Controller\ListController::getProductInfoWithCustomViewByName
-    methods: GET
-
-
-
+  path: /api/getProductInfoWithCustomViewByName/{name}
+  controller: App\Controller\ListController::getProductInfoWithCustomViewByName
+  methods: GET
