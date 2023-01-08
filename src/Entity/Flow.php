@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Entity;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -86,6 +88,16 @@ class Flow
      * @ORM\Column(type="string", length=255)
      */
     private $lastRunLog = "OK";
+
+    /**
+     * @ORM\OneToMany(targetEntity=FlowProtokoll::class, mappedBy="flow_id")
+     */
+    private $flowProtokolls;
+
+    public function __construct()
+    {
+        $this->flowProtokolls = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -254,6 +266,36 @@ class Flow
     public function setLastRunLog(string $lastRunLog): self
     {
         $this->lastRunLog = $lastRunLog;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, FlowProtokoll>
+     */
+    public function getFlowProtokolls(): Collection
+    {
+        return $this->flowProtokolls;
+    }
+
+    public function addFlowProtokoll(FlowProtokoll $flowProtokoll): self
+    {
+        if (!$this->flowProtokolls->contains($flowProtokoll)) {
+            $this->flowProtokolls[] = $flowProtokoll;
+            $flowProtokoll->setFlowId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFlowProtokoll(FlowProtokoll $flowProtokoll): self
+    {
+        if ($this->flowProtokolls->removeElement($flowProtokoll)) {
+            // set the owning side to null (unless already changed)
+            if ($flowProtokoll->getFlowId() === $this) {
+                $flowProtokoll->setFlowId(null);
+            }
+        }
 
         return $this;
     }
