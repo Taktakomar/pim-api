@@ -1,0 +1,105 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <div class="d-sm-flex justify-content-between mb-4">
+        <div class="d-flex TitleWrap">
+            <h1 class="h3 mb-0 text-gray-800">Flow Hinzufügen</h1>
+        </div>
+    </div>
+    <!-- Content Row -->
+    <br>
+    <div class="row justify-content-center">
+        <div class="col-9">
+        <form  action="#" method="POST">
+           <div class="form-group">
+                <label for="display_name">Display Name:</label>
+                <input type="text" class="form-control" name ="display_name" id="display_name" placeholder="Beispiel:Otto Rechnungen" required autofocus>
+            </div>
+            <div class="form-group">
+                <label for="context_name">Context Name:</label>
+                <input type="text" class="form-control" name ="context_name" id="context_name" placeholder="Beispiel:Otto_Rechnungen" required autofocus>
+            </div>
+            <div class="form-row">
+            
+                <div class="form-group col-md-4">
+                    <label for="period">Wiederholung Zeit in Minuten:</label>
+                    <input type="text" class="form-control text-right" name ="period" id="period" placeholder="3600" required autofocus>
+                </div>
+                <div class="form-group col-md-3 min">
+                
+                    <div class="mb-2 mr-1">min</div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="verbinungArtEingang">Eingang Verbindungensart</label>
+                    <select id="verbinungArtEingang" name ="verbinungArtEingang" class="form-control"  >
+                        <option selected>auswählen</option>
+                            {% for verbindung in verbindungen%}
+                            <option value="{{verbindung.id}}">{{ verbindung.name }}</option>>
+                            {% endfor %}
+                        
+                    </select>
+                </div>
+                 <div class="form-group col-md-6">
+                    <label for="verbinungArtAusgang">Ausgang Verbindungensart</label>
+                    <select id="verbinungArtAusgang" name ="verbinungArtAusgang" class="form-control" >
+                        <option selected>auswählen</option>
+                        {% for verbindung in verbindungen%}
+                            <option value="{{verbindung.id}}">{{ verbindung.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+             <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="sftpsIn">EingangssftpAccount</label>
+                    <select id="sftpsIn" name="sftpsIn" class="form-control">
+                        <option selected>auswählen</option>
+                        {% for sftp in sftps%}
+                            <option value="{{sftp.id}}">{{ sftp.server }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                 <div class="form-group col-md-6">
+                    <label for="sftpsOut">AusgangssftpAccount</label>
+                    <select id="sftpsOut" name="sftpsOut" class="form-control">
+                        <option selected >auswählen</option>
+                        {% for sftp in sftps%}
+                            <option value="{{sftp.id}}">{{ sftp.server }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="input_datei_name">Eingangsdateiname:</label>
+                    <input type="text" class="form-control" name ="input_datei_name" id="input_datei_name" placeholder="Beispiel:/otto/in/otto_rechnung.csv" required autofocus>
+                </div>
+                 <div class="form-group col-md-6">
+                    <label for="output_datei_name">Ausgangsdateiname</label>
+                    <input type="text" class="form-control" name ="output_datei_name" id="output_datei_name" placeholder="Beispiel:/otto/out/otto_rechnung.csv" required autofocus>
+                </div>
+            </div>
+            <div class="form-group" >
+                <label for="Flow_Mappe">Mappe:</label>
+                <textarea class="form-control" name="Flow_Mappe" id="Flow_Mappe" rows="3" required></textarea>
+            </div>
+            <br>
+            <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary">Speichern</button>
+            </div>
+        </form>
+        </div>
+    </div>
+    <br>
+    {% for message in app.flashes('success')%}
+    <div class="alert alert-success">
+        {{ message }}
+    </div>
+    {% endfor %}
+    </div>
+    <!-- /.container-fluid -->
+{% endblock %}

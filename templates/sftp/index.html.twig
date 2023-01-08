@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <div class="d-sm-flex justify-content-between mb-4">
+        <div class="d-flex TitleWrap">
+            <h1 class="h3 mb-0 text-gray-800">SFTP Account Hinzufügen</h1>
+        </div>
+    </div>
+    <!-- Content Row -->
+    <br>
+    <div class="row justify-content-center">
+        <div class="col-9">
+        <form action="#" method="POST">
+            <div class="form-row">
+                <div class="form-group  col-md-12">
+                    <label for="account_name">Acouunt name :</label>
+                    <input type="text" class="form-control form-control-user "  name ="account_name" id="account_name" placeholder="Beispiel : otto Rechnung Sftp" required autofocus>
+                </div>
+                 
+            </div>
+             <div class="form-row">
+                <div class="form-group col-md-11">
+                      <label for="server_name">Server :</label>
+                    <input type="text" class="form-control" name ="server_name" id="Server" placeholder="Beispiel : test.rebex.net" required autofocus >
+                </div>
+                 <div class="form-group col-md-1">
+                    <label for="sftp_port">Port :</label>
+                    <input type="text" class="form-control text-center" name ="sftp_port" id="sftp_port" placeholder="22" required autofocus >
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                      <label for="user_name">Username :</label>
+                    <input type="text" class="form-control" name ="user_name" id="user_name" placeholder="Beispiel : demo-user" required autofocus>
+                </div>
+                 <div class="form-group col-md-6">
+                    <label for="user_password">Passwort :</label>
+                    <input type="text" class="form-control" name ="user_password" id="user_password" placeholder="Beispiel : demo-password" required autofocus>
+                </div>
+            </div>
+            <br>
+            <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary">Speichern</button>
+            </div>
+        </form>
+        </div>
+        </div>
+        <br>
+        <br>
+    {% for message in app.flashes('success')%}
+    <div class="alert alert-success">
+        {{ message }}
+    </div>
+    {% endfor %}
+</div>
+<!-- /.container-fluid -->
+{% endblock %}

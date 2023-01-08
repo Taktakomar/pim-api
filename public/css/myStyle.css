@@ -1,105 +1,126 @@
 .logo {
-  border: 2px solid;
-  padding: 12px;
-  border-color: #f6c23e;
-  border-radius: 11px;
-  background: antiquewhite;
+    border: 2px solid;
+    padding: 0.5rem;
+    border-color: #f6c23e;
+    border-radius: 11px;
+    background: antiquewhite;
 }
+
 .loginL {
-  width: 13rem;
+    width: 13rem;
 }
+
 .protcolButton {
-  color: #36b9cc !important;
-  padding: 2px;
-  font-size: 1.3em;
+    color: #36b9cc !important;
+    padding: 2px;
+    font-size: 1.3em;
 }
 
 .stopButton {
-  color: #e74a3b;
-  padding: 2px;
-  font-size: 1.3em;
+    color: #e74a3b;
+    padding: 2px;
+    font-size: 1.3em;
 }
 
 .startButton {
-  color: #1cc88a;
-  padding: 2px;
-  font-size: 1.3em;
+    color: #1cc88a;
+    padding: 2px;
+    font-size: 1.3em;
 }
 
 .flowTextElement {
-  flex-direction: column !important;
+    flex-direction: column !important;
 }
 
 .titleFlowElement {
-  text-align: center;
-  padding: 0.5rem;
+    text-align: center;
+    padding: 0.5rem;
 }
 
 .flowElementErorr {
-  background-color: #e74a3b40;
+    background-color: #e74a3b40;
 }
 
 .flowElementStop {
-  background-color: #85879650;
+    background-color: #85879660;
 }
+
+.flowElementplay {
+    background-color: #1cc88a60;
+}
+
 .spaceBetween {
-  padding: 2px;
+    padding: 2px;
 }
+
 .willkommenTitel {
-  justify-content: center;
-  justify-items: center;
-  display: flex;
-  flex: 1;
-  padding: 1rem;
+    justify-content: center;
+    justify-items: center;
+    display: flex;
+    flex: 1;
+    padding: 1rem;
 }
+
 .titleLogoWrap {
-  display: flex;
-  flex-direction: column-reverse;
+    display: flex;
+    flex-direction: column-reverse;
 }
+
 .logginButton {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  justify-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    justify-items: center;
 }
+
 .radiusButton {
-  font-size: 1rem !important;
-  border-radius: 10rem !important;
+    font-size: 1rem !important;
+    border-radius: 10rem !important;
 }
+
 .logoLogin {
-  justify-content: center !important;
-  justify-items: center !important;
-  display: flex !important;
-  flex: 1 !important;
+    justify-content: center !important;
+    justify-items: center !important;
+    display: flex !important;
+    flex: 1 !important;
 }
+
 .succesProtokoll {
-  background-color: #1cc88a60 !important;
-  color: #00000090;
-  font-weight: 600;
+    background-color: #1cc88a60 !important;
+    color: #00000090;
+    font-weight: 600;
 }
+
 .errorProtokoll {
-  background-color: #e74a3b60 !important;
-  color: #00000090;
-  font-weight: 600;
+    background-color: #e74a3b60 !important;
+    color: #00000090;
+    font-weight: 600;
 }
 
 .row-8 {
-  justify-content: center;
-  justify-items: center;
-  display: flex;
+    justify-content: center;
+    justify-items: center;
+    display: flex;
 }
+
 .pagginationcol {
-  display: flex;
-  justify-content: center;
-  justify-items: center;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
 }
 
 .TitleWrap {
-  flex: 1;
-  justify-content: center;
-  text-align: center;
+    flex: 1;
+    justify-content: center;
+    text-align: center;
 }
 
 .TitlelBackFile {
-  display: flex;
+    display: flex;
+}
+
+.min {
+    display: flex !important;
+    align-items: end!important;
+    flex: 1;
 }

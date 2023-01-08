@@ -9,17 +9,30 @@
         </div>
 	    <!-- Content Row -->
         <div class="row">
-        <!-- Earnings (Monthly) Card Example -->
+        {% for flow in flows %}
+        <!-- Flow Example -->
             <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-primary flowElementErorr shadow h-100 py-2">
+            {% if flow.getLastRunLog() == "ERROR" %}
+            <div class="card border-left-primary flowElementErorr shadow h-100 py-2">
+            {% else %}
+                {% if flow.isActiv() == false %}
+                <div class="card border-left-primary flowElementStop shadow h-100 py-2">
+                {% else %}
+                <div class="card border-left-primary flowElementplay shadow h-100 py-2">
+                {% endif %}
+            {% endif %}
                     <div class="card-body">
                         <div class="row no-gutters align-items-center flowTextElement">
                             <div class="col mr-2">
-                                <div class="h5 mb-0 font-weight-bold text-gray-800 titleFlowElement">Otto Versandbestätigung</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800 titleFlowElement">{{ flow.getDisplayName()}}</div>
                             </div>
                             <div class="col-auto spaceBetween">
+                                <a id="{{ flow.id }}"  href="{{ path('flow_start',{id: flow.id }) }}">
                                 <i class="fas fa-play startButton"></i>
-                                <i class="fas fa-stop stopButton"  ></i> 
+                                </a>
+                                <a id="{{ flow.id }}" href="{{ path('flow_stop',{id: flow.id }) }}">
+                                <i class="fas fa-stop stopButton"  ></i>
+                                </a> 
                                 <a class="" href="{{ path('flowProtkoll') }}">
                                 <i class="fas fa fa-history protcolButton"></i> 
                                 </a>
@@ -28,64 +41,19 @@
                     </div>
                 </div>
             </div>
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-warning shadow h-100 py-2 flowElementStopb">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center flowTextElement">
-                                        <div class="col mr-2">
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800 titleFlowElement">Otto Rechnungen </div>
-                                        </div>
-                                        <div class="col-auto spaceBetween">
-                                            <i class="fas fa-play startButton"></i>
-                                            <i class="fas fa-stop stopButton"  ></i> 
-                                            <a class="" href="{{ path('flowProtkoll') }}">
-                                            <i class="fas fa fa-history protcolButton"></i> 
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center flowTextElement">
-                                        <div class="col mr-2">
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800 titleFlowElement">Amazon Bestände</div>
-                                        </div>
-                                        <div class="col-auto spaceBetween">
-                                            <i class="fas fa-play startButton"></i>
-                                            <i class="fas fa-stop stopButton"  ></i> 
-                                            <a class="" href="{{ path('flowProtkoll') }}">
-                                            <i class="fas fa fa-history protcolButton"></i> 
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center flowTextElement">
-                                        <div class="col mr-2">
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800 titleFlowElement">Otto Liefermeldung</div>
-                                        </div>
-                                        <div class="col-auto spaceBetween">
-                                            <i class="fas fa-play startButton"></i>
-                                            <i class="fas fa-stop stopButton"  ></i>
-                                            <a class="" href="{{ path('flowProtkoll') }}"> 
-                                            <i class="fas fa fa-history protcolButton"></i> 
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.container-fluid -->
+             <!-- end Flow Example -->
+              {% endfor %}
+        </div>
+        {% for message in app.flashes('success')%}
+                <div class="alert alert-success">
+                    {{ message }}
+                 </div>
+        {% endfor %}
+        {% for message in app.flashes('error')%}
+                <div class="alert alert-danger">
+                    {{ message }}
+                 </div>
+        {% endfor %}
+    </div>
+    <!-- /.container-fluid -->
 {% endblock %}

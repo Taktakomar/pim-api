@@ -10,6 +10,24 @@ reg:
 flow:
   path: /home/flows
   controller: App\Controller\FlowsController::index
+
+flow_start:
+  path: /home/flows/startbyId/{id}
+  controller: App\Controller\FlowsController::startFlow
+flow_stop:
+  path: /home/flows/stopbyId/{id}
+  controller: App\Controller\FlowsController::stopFlow
+flow_sftp_in_sftp_out:
+  path: /home/flows/stfpIn/sftpOut/createFileByFlowId{id}
+  controller: App\Controller\FlowsController::createFileByFlowId
+  
+flow_add:
+  path: /home/flows/add
+  controller: App\Controller\FlowsController::addFlow
+sftp_add:
+  path: /home/sftp/add
+  controller: App\Controller\SftpController::addSftp
+
 flowProtkoll:
   path: /home/flow/protokoll
   controller: App\Controller\FlowProtokollController::index
