@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * @ORM\Table(name="sftp")
  * @ORM\Entity(repositoryClass=SftpRepository::class)
  */
 class Sftp
@@ -15,7 +16,7 @@ class Sftp
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer" , nullable=false)
      */
     private $id;
 
@@ -38,12 +39,6 @@ class Sftp
      * @ORM\Column(type="string", length=255)
      */
     private $serverPassword;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Flow::class, mappedBy="sftp_Input_server_id")
-     */
-    private $flows;
-
     /**
      * @ORM\Column(type="string", length=10)
      */
@@ -108,36 +103,6 @@ class Sftp
     public function setServerPassword(string $serverPassword): self
     {
         $this->serverPassword = $serverPassword;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Flow>
-     */
-    public function getFlows(): Collection
-    {
-        return $this->flows;
-    }
-
-    public function addFlow(Flow $flow): self
-    {
-        if (!$this->flows->contains($flow)) {
-            $this->flows[] = $flow;
-            $flow->setSftpInputServerId($this);
-        }
-
-        return $this;
-    }
-
-    public function removeFlow(Flow $flow): self
-    {
-        if ($this->flows->removeElement($flow)) {
-            // set the owning side to null (unless already changed)
-            if ($flow->getSftpInputServerId() === $this) {
-                $flow->setSftpInputServerId(null);
-            }
-        }
 
         return $this;
     }

@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
+ * @ORM\Table(name="flow")
  * @ORM\Entity(repositoryClass=FlowRepository::class)
  */
 class Flow
@@ -15,17 +16,17 @@ class Flow
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer",nullable=false)
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255 ,nullable=false)
      */
     private $context_name;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean" ,nullable=false)
      */
     private $activ = false;
 
@@ -37,30 +38,45 @@ class Flow
      */
     private $last_run_time  ;
     /**
-     * @ORM\Column(type="bigint")
+     * @ORM\Column(type="bigint" , nullable=false)
      */
     private $periodeInMin;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255 )
      */
     private $input_datei_name;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255 )
      */
     private $output_datei_name;
     /**
-     * @ORM\ManyToOne(targetEntity=VerbindungenArten::class, inversedBy="flows")
+     * @var \VerbindungenArten
+     *
+     * @ORM\ManyToOne(targetEntity="VerbindungenArten",fetch="EAGER")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="verbindung_art_id_in_id", referencedColumnName="id")
+     * })
      */
     private $verbindungArtIdIn;
     /**
-     * @ORM\ManyToOne(targetEntity=Sftp::class, inversedBy="flows")
+     * @var \Sftp
+     *
+     * @ORM\ManyToOne(targetEntity="Sftp",fetch="EAGER")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="sftp_input_server_id_id", referencedColumnName="id")
+     * })
      */
     private $sftp_Input_server_id;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Sftp::class, inversedBy="flows")
+   /**
+     * @var \Sftp
+     *
+     * @ORM\ManyToOne(targetEntity="Sftp",fetch="EAGER")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="sftp_output_server_id_id", referencedColumnName="id")
+     * })
      */
     private $sftp_output_server_id;
 
@@ -75,7 +91,12 @@ class Flow
     private $display_name;
 
     /**
-     * @ORM\ManyToOne(targetEntity=VerbindungenArten::class, inversedBy="flows")
+     * @var \VerbindungenArten
+     *
+     * @ORM\ManyToOne(targetEntity="VerbindungenArten",fetch="EAGER")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="verbinungartout_id ", referencedColumnName="id")
+     * })
      */
     private $verbinungartout;
 
@@ -269,34 +290,5 @@ class Flow
 
         return $this;
     }
-
-    /**
-     * @return Collection<int, FlowProtokoll>
-     */
-    public function getFlowProtokolls(): Collection
-    {
-        return $this->flowProtokolls;
-    }
-
-    public function addFlowProtokoll(FlowProtokoll $flowProtokoll): self
-    {
-        if (!$this->flowProtokolls->contains($flowProtokoll)) {
-            $this->flowProtokolls[] = $flowProtokoll;
-            $flowProtokoll->setFlowId($this);
-        }
-
-        return $this;
-    }
-
-    public function removeFlowProtokoll(FlowProtokoll $flowProtokoll): self
-    {
-        if ($this->flowProtokolls->removeElement($flowProtokoll)) {
-            // set the owning side to null (unless already changed)
-            if ($flowProtokoll->getFlowId() === $this) {
-                $flowProtokoll->setFlowId(null);
-            }
-        }
-
-        return $this;
-    }
+    
 }

@@ -30,7 +30,6 @@ class FlowsController extends AbstractController
                     $flowTostart->setActiv(True);
                     date_default_timezone_set("Europe/Berlin");
                     $flowTostart->setLastRunTime(new \DateTime('now'));
-                    $flowTostart->setEndpointString("/home/flows/stfpIn/sftpOut/createFileByFlowId{".$id."}");
                     $em = $doctrine->getManager();
                     $em->persist( $flowTostart);
                     $em->flush();
@@ -53,13 +52,34 @@ class FlowsController extends AbstractController
                 $flowTostart = $flowrep->findOneBy(['id'=>$id]);
                 if($flowTostart->isActiv() == True){
                     $flowTostart->setActiv(False);
-                    $flowTostart->setEndpointString("");
                     $em = $doctrine->getManager();
                     $em->persist( $flowTostart);
                     $em->flush();
                     $this->addFlash('success','Flow wurde Erfolgreich gestoppt!');
                 }else{
                     $this->addFlash('error','Flow ist bereit gestoppt!');
+                }
+            }
+        }
+        $flows = $flowrep->findAll();
+        return $this->render('flows/index.html.twig', [
+            'flows' => $flows,
+        ]);
+    }
+    public function takeSuccess(Request $request,FlowRepository $flowrep ,ManagerRegistry $doctrine ,$id): Response
+    {
+        $id = intVal($id);
+        if ($request){
+            if ($id){
+                $flowToSuccess = $flowrep->findOneBy(['id'=>$id]);
+                if($flowToSuccess->getLastRunLog() == "ERROR"){
+                    $flowToSuccess->setLastRunLog("OK");
+                    $em = $doctrine->getManager();
+                    $em->persist( $flowToSuccess);
+                    $em->flush();
+                    $this->addFlash('success','Flow wurde Erfolgreich auf Success gesetzt!');
+                }else{
+                    $this->addFlash('error','Flow ist bereit auf Success gesetzt!');
                 }
             }
         }
@@ -105,14 +125,14 @@ class FlowsController extends AbstractController
                     $flow->setSftpOutputServerId($sftpOut);
                     $flow->setInputDateiName($input_datei_name);
                     $flow->setOutputDateiName($output_datei_name);
-                    $flow->setFlowMappe($Flow_Mappe);
+                    $flow->setFlowMappe(str_replace("\r\n","",$Flow_Mappe));
                     date_default_timezone_set("Europe/Berlin");
                     $flow->setLastRunTime(new \DateTime('now'));
                     $em = $doctrine->getManager();
                     $em->persist($flow);
                     $em->flush();
                     $Flowid = $flow->getId();
-                    $endPoint ="/home/flows/stfpIn/sftpOut/createFileByFlowId{".$Flowid."}";
+                    $endPoint ="home/flows/stfpIn/sftpOut/createFileByFlowId/".$Flowid."";
                     $flow->setEndpointString($endPoint);
                     $em->persist($flow);
                     $em->flush();

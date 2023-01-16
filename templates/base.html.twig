@@ -20,9 +20,10 @@
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
                 <a class="nav-link" href="{{ path('flow') }}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <i class="fas fa-book"></i>
                     <span>Flows</span></a>
             </li>
+
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -80,14 +81,11 @@
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="{{ asset('login.html')}}">Login</a>
-                        <a class="collapse-item" href="{{ asset('register.html')}}">Register</a>
-                        <a class="collapse-item" href="{{ asset('forgot-password.html')}}">Forgot Password</a>
+                        <h6 class="collapse-header">Flow :</h6>
+                        <a class="collapse-item" href="{{ path('flow_url_trigger')}}">Url-Triggern</a>
                         <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Other Pages:</h6>
-                        <a class="collapse-item" href="{{ asset('404.html')}}">404 Page</a>
-                        <a class="collapse-item" href="{{ asset('blank.html')}}">Blank Page</a>
+                        <h6 class="collapse-header">confluence:</h6>
+                      
                     </div>
                 </div>
             </li>

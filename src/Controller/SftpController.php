@@ -26,9 +26,9 @@ class SftpController extends AbstractController
                 $sftp->setSeverPort($server_port);
                 $sftp->setServerUserName($user_name);
                 $sftp->setArt("sftp");
-                $pwd_peppered = hash_hmac("sha256", $user_password ,"pepper=c1isvFdxMDdmjOlvxpecFw" );
-                $pwd_hashed = password_hash($pwd_peppered, PASSWORD_ARGON2ID);
-                $sftp->setServerPassword($pwd_hashed);
+                //$pwd_peppered = hash_hmac("sha256", $user_password ,"pepper=".$this->getParameter('app.pepper'));
+                //$pwd_hashed = password_hash($pwd_peppered, PASSWORD_ARGON2ID);
+                $sftp->setServerPassword($user_password);
                 $em = $doctrine->getManager();
                 $em->persist($sftp);
                 $em->flush();

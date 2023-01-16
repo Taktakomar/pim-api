@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * @ORM\Table(name="file_type")
  * @ORM\Entity(repositoryClass=FileTypeRepository::class)
  */
 class FileType
@@ -15,19 +16,14 @@ class FileType
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer",nullable=false)
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255,nullable=false)
      */
     private $name;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Flow::class, mappedBy="fileTypeId")
-     */
-    private $flows;
 
     public function __construct()
     {
@@ -50,34 +46,5 @@ class FileType
 
         return $this;
     }
-
-    /**
-     * @return Collection<int, Flow>
-     */
-    public function getFlows(): Collection
-    {
-        return $this->flows;
-    }
-
-    public function addFlow(Flow $flow): self
-    {
-        if (!$this->flows->contains($flow)) {
-            $this->flows[] = $flow;
-            $flow->setFileTypeId($this);
-        }
-
-        return $this;
-    }
-
-    public function removeFlow(Flow $flow): self
-    {
-        if ($this->flows->removeElement($flow)) {
-            // set the owning side to null (unless already changed)
-            if ($flow->getFileTypeId() === $this) {
-                $flow->setFileTypeId(null);
-            }
-        }
-
-        return $this;
-    }
+   
 }

@@ -6,6 +6,7 @@ use App\Repository\FlowProtokollRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * @ORM\Table(name="flow_protokoll")
  * @ORM\Entity(repositoryClass=FlowProtokollRepository::class)
  */
 class FlowProtokoll
@@ -18,7 +19,12 @@ class FlowProtokoll
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Flow::class, inversedBy="flowProtokolls")
+     * @var \Flow
+     *
+     * @ORM\ManyToOne(targetEntity="Flow")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="flow_id_id", referencedColumnName="id")
+     * })
      */
     private $flow_id;
 

@@ -1,25 +1,26 @@
 {% extends 'base.html.twig' %}
-  
 {% block body %}
     <!-- Begin Page Content -->
     <div class="container-fluid">
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <div class="d-flex TitleWrap">
-            <h1 class="h3 mb-0 text-gray-800">Flow Protokoll</h1>
+            <h1 class="h3 mb-0 text-gray-800">Url Trigger</h1>
         </div>
     </div>
-    <div class="TitlelBackFile">
-        <a class="btn btn-dark" href="{{ path('flow')}}">
-        <i class="fa fa-arrow-left " aria-hidden="true"></i>
-        </a>
+    <div class ="tooltipcontainer" data-toggle="tooltip" data-placement="top" title="zu Flow Ansicht">
+    <div class="TitlelBackFile" >
+    <a class="btn btn-dark" href="{{ path('flow')}}">
+    <i class="fa fa-arrow-left " aria-hidden="true"></i>
+    </a>
+    </div>
     </div>
     <br>
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">
-           Hier wird für jede Ausführung protokolliert! 
+           Möchten Sie Flow manuell ausführen? Dann sind Sie hier richtig! 
         </h6>
         </div>
         <div class="card-body">
@@ -32,45 +33,29 @@
             >
             <thead>
                 <tr>
-                <th>id</th>
-                <th>flow_name</th>
-                <th>Letzte Ausführungszeit</th>
-                <th>erfolgreich ?</th>
-                <th>log_information</th>
+                <th>Flow_Name</th>
+                <th>Flow_Url</th>
                 </tr>
             </thead>
             <tfoot>
                 <tr>
-                <th>id</th>
-                <th>flow_name</th>
-                <th>Letzte Ausführungszeit</th>
-                <th>erfolgreich ?</th>
-                <th>log_information</th>
+                <th>Flow_Name</th>
+                <th>Flow_Url</th>
+              
                 </tr>
             </tfoot>
             <tbody>
-                {% for protocol in protocols%}
-                {% if (protocol.getLogErrorOrSucces() =="OK") %}
-                <tr class ="succesProtokoll">
+            {% for flow in flows %}
+                {% if flow.isActiv() == false %}
+                <tr class ="flowElementStop">
                 {% else %}
-                <tr class ="errorProtokoll">
+                <tr class ="flowElementplay">
                 {% endif %}
-                <td> {{ protocol.getId() }} </td>
-                <td> {{ flow_name }}</td>
-                <td> {{ protocol.getProtkollRunTime() | date('Y-m-d H:i:s') }}</td>
-                <td> {{ protocol.getLogErrorOrSucces() }}</td>
-                <td class="autoBreakLine"> {{ protocol.getLogInfo() | raw }}</td>
+                <td>{{ flow.getDisplayName() }} </td>
+                <td>{{ url('app_login') ~ flow.getEndpointString()}}</td>
                 </tr>
-                {% endfor %}
-                <!-- <tr class="errorProtokoll">
-                <td>11/18/2022 14:00</td>
-                <td>Otto Versandbestätigung</td>
-                <td>Austausch ist Fehlerhaft</td>
-                <td>Inputlocation : c/test/test.csv</td>
-                <td>Outputlocation : Eroor('UNB Segment fehlt')</td>
-                </tr>-->
+            {% endfor %}
             </tbody>
-            
             </table>
             <div class="row-8">
                 <div class="pagginationcol">

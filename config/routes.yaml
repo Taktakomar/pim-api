@@ -10,17 +10,22 @@ reg:
 flow:
   path: /home/flows
   controller: App\Controller\FlowsController::index
-
+flow_url_trigger:
+  path: /home/flows/url_trigger
+  controller: App\Controller\UrlTriggerController::showUrl
 flow_start:
   path: /home/flows/startbyId/{id}
   controller: App\Controller\FlowsController::startFlow
 flow_stop:
   path: /home/flows/stopbyId/{id}
   controller: App\Controller\FlowsController::stopFlow
+flow_access:
+  path: /home/flows/takeSuccess/{id}
+  controller: App\Controller\FlowsController::takeSuccess
 flow_sftp_in_sftp_out:
-  path: /home/flows/stfpIn/sftpOut/createFileByFlowId{id}
-  controller: App\Controller\FlowsController::createFileByFlowId
-  
+  path: /home/flows/stfpIn/sftpOut/createFileByFlowId/{id}
+  controller: App\Controller\FlowJobsController::createFileByFlowId
+
 flow_add:
   path: /home/flows/add
   controller: App\Controller\FlowsController::addFlow
@@ -29,50 +34,8 @@ sftp_add:
   controller: App\Controller\SftpController::addSftp
 
 flowProtkoll:
-  path: /home/flow/protokoll
-  controller: App\Controller\FlowProtokollController::index
+  path: /home/flow/protokoll/{id}
+  controller: App\Controller\FlowProtokollController::getProtokollByFlowId
 flowConnection:
   path: /home/flow/connection
   controller: App\Controller\FlowConnectionController::index
-
-api_get_all_product:
-  path: /api/getAllProduct/
-  controller: App\Controller\ListController::getAllProduct
-  methods: GET
-api_get_all_kunden:
-  path: /api/getKundenInforamtion/
-  controller: App\Controller\ListController::getKundenInforamtion
-  methods: GET
-
-api_get_all_kundenTemplate:
-  path: /api/getKundenTemplate/
-  controller: App\Controller\ListController::getKundenTemplate
-  methods: GET
-api_get_all_kollektionen:
-  path: /api/getkollektionen/
-  controller: App\Controller\ListController::getkollektionen
-  methods: GET
-api_get_all_kategorie:
-  path: /api/getkategorien/
-  controller: App\Controller\ListController::getkategorien
-  methods: GET
-api_get_all_Images:
-  path: /api/getAllImages/
-  controller: App\Controller\ListController::getAllImages
-  methods: GET
-api_get_all_definitionen:
-  path: /api/getAllDefinitionen/
-  controller: App\Controller\ListController::getAllDefinitionen
-  methods: GET
-api_get_all_artikel_defintionen:
-  path: /api/getAllArikelDefintionen
-  controller: App\Controller\ListController::getAllArikelDefintionen
-  methods: GET
-api_get_all_createCsvBycustomersName:
-  path: /api/createCsvBycustomersName/{name}
-  controller: App\Controller\ListController::createCsvBycustomersName
-  methods: GET
-api_get_all_ProductInfoWithCustomViewByName:
-  path: /api/getProductInfoWithCustomViewByName/{name}
-  controller: App\Controller\ListController::getProductInfoWithCustomViewByName
-  methods: GET

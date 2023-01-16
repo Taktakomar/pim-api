@@ -7,6 +7,13 @@
                 <h1 class="h3 mb-0 text-gray-800">Flows</h1>
             </div>
         </div>
+        <div class="TitlelBackFile">
+            <a class="btn btn-dark" href="{{ path('flow_url_trigger')}}">
+            <i class="fa fa-globe " aria-hidden="true"></i>
+            Flow-Url-Trigger
+            </a>
+        </div>
+        <br>
 	    <!-- Content Row -->
         <div class="row">
         {% for flow in flows %}
@@ -33,8 +40,11 @@
                                 <a id="{{ flow.id }}" href="{{ path('flow_stop',{id: flow.id }) }}">
                                 <i class="fas fa-stop stopButton"  ></i>
                                 </a> 
-                                <a class="" href="{{ path('flowProtkoll') }}">
+                                <a class="" href="{{ path('flowProtkoll',{id:flow.id }) }}">
                                 <i class="fas fa fa-history protcolButton"></i> 
+                                </a>
+                                <a class="" href="{{ path('flow_access',{id:flow.id }) }}">
+                                <i class="fa fa-check errorBeheben"></i> 
                                 </a>
                             </div>
                         </div>
