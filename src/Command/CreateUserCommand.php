@@ -33,7 +33,7 @@ class CreateUserCommand extends Command
         //$input = $env;
         //$process->start();
         //ECHO $this->projectDir;
-       $this->sftpinSftpoutService->createFileByFlowId(3);
+       $this->sftpinSftpoutService->createFileByFlowId(1);
         
       
       // $output->writeln(getcwd());

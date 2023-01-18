@@ -35,6 +35,6 @@ class FlowJobsController extends AbstractController
     {
        // $event = new OrderPlacedEvent();
         //$eventDispatcher->dispatch($event, OrderPlacedEvent::NAME);
-        return $this->json("job gestartet",200);
+        return $this->json("Url-Triggern ist noch nicht implementiert",200);
     }
 }

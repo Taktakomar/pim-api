@@ -87,7 +87,7 @@ class SftpInSftpOutService
                         }else{
 
                             $flow->setLastRunLog("ERROR");
-                            $this->logjobs->LogIntoDatabase($this->error,$flow,$doctrine,"ERROR");
+                            $this->logjobs->LogIntoDatabase($this->error,$flow,$this->doctrine,"ERROR");
 
                         }
                     }

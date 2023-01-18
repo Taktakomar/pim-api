@@ -1,0 +1,18 @@
+<?php
+
+namespace App\Controller;
+
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+
+class FlowEditController extends AbstractController
+{
+
+    public function index(): Response
+    {
+        return $this->render('flow_edit/index.html.twig', [
+            'controller_name' => 'FlowEditController',
+        ]);
+    }
+}

@@ -22,6 +22,16 @@ flow_stop:
 flow_access:
   path: /home/flows/takeSuccess/{id}
   controller: App\Controller\FlowsController::takeSuccess
+connection_edit:
+  path: /home/flow/connection/edit
+  controller: App\Controller\ConnectionEditController::index
+profile_edit:
+  path: /home/flow/profile/edit
+  controller: App\Controller\ProfileEditController::index
+flow_edit:
+  path: /home/flow/edit
+  controller: App\Controller\FlowEditController::index
+
 flow_sftp_in_sftp_out:
   path: /home/flows/stfpIn/sftpOut/createFileByFlowId/{id}
   controller: App\Controller\FlowJobsController::createFileByFlowId
